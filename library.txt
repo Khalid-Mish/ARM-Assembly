@@ -1,0 +1,85 @@
+CREATE DATABASE Library;
+USE LIBRARY;
+
+CREATE TABLE Members (
+   MemberID int NOT NULL primary key,
+   FirstName varchar(255),
+   LastName varchar(255),
+   StreetName varchar(255),
+   PostCode varchar(10)
+   );
+      
+CREATE TABLE Titles (
+   Title varchar (255),
+   Author varchar (255),
+   Genre varchar (255),
+   Stock int,
+   NumberAvailable int,
+   ISBN varchar (50) NOT NULL primary key
+   );
+
+
+CREATE TABLE Reservations (
+   ISBN varchar (50),
+   MemberID int NOT NULL,
+   FOREIGN KEY (ISBN) REFERENCES Titles(ISBN),
+   FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
+   ReservedFrom date,
+   ReservedUntil date,
+   ReservationNumber int NOT NULL primary key
+);
+
+CREATE TABLE Bookings (
+   ISBN varchar (50),
+   MemberID int NOT NULL,
+   FOREIGN KEY (ISBN) REFERENCES Titles(ISBN),
+   FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
+   BorrowDate date,
+   DueDate date,
+   ReturnedDate date,
+   Overdue boolean,
+   BookingNumber int NOT NULL primary key
+);
+
+ INSERT INTO Members (MemberID,FirstName,LastName,StreetName,PostCode)
+ VALUES (7,'Ziya','Meng', '79 Oxford Street', 'M14 4EY');
+ 
+ INSERT INTO Titles (Title, Author, Genre, Stock, NumberAvailable, ISBN)
+ VALUES ('Harry Potter & The Chamber of Secrets', 'J.K Rowling', 'Fantasy', 3, 2, '1234567890');
+ 
+ INSERT INTO Reservations (ISBN, MemberID, ReservedFrom, ReservedUntil, ReservationNumber)
+ VALUES ('1234567890', 7, '2000-07-04', '2024-10-22', 67890);
+ 
+ INSERT INTO Bookings (ISBN, MemberID, BorrowDate, DueDate, ReturnedDate, Overdue, BookingNumber)
+ VALUES ('1234567890', 7, '2001-06-10', '2001-07-10', '2001-08-10', FALSE, 1608);
+ 
+  INSERT INTO Bookings (ISBN, MemberID, BorrowDate, DueDate, ReturnedDate, Overdue, BookingNumber)
+ VALUES ('1234567890', 7, '2001-06-10', '2001-07-10', '2001-08-10', FALSE, 1608);
+ 
+ 
+ 
+ 
+ 
+ 
+ INSERT INTO Members (MemberID,FirstName,LastName,StreetName,PostCode)
+ VALUES (1,'Khalid','Al-Roubaie', '221B Baker Street', 'NW8 456');
+ 
+ INSERT INTO Titles (Title, Author, Genre, Stock, NumberAvailable, ISBN)
+ VALUES ('Harry Potter & The Prisoner of Azkaban', 'J.K Rowling', 'Fantasy', 10, 3, '0987654321');
+ 
+ INSERT INTO Reservations (ISBN, MemberID, ReservedFrom, ReservedUntil, ReservationNumber)
+ VALUES ('0987654321', 1, '1990-01-02', '1990-02-06', 476584);
+ 
+ INSERT INTO Bookings (ISBN, MemberID, BorrowDate, DueDate, ReturnedDate, Overdue, BookingNumber)
+ VALUES ('0987654321', 1, '2001-06-10', '2001-07-10', '2001-08-10', FALSE, 343);
+ 
+ 
+ 
+SELECT * FROM Members;
+ 
+ 
+ 
+ 
+
+ 
+ 
